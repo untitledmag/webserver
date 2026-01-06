@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Webserver Home</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #e7f3ed;
+            color: #27ae60;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-menu {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            text-decoration: none;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flask Control Panel</h1>
+        <div class="status-badge">● Server Online</div>
+        
+        <p>Welcome to your local webserver. Use the buttons below to navigate through the application modules.</p>
+
+        <div class="nav-menu">
+            <a href="/" class="btn">Home</a>
+            <a href="/minecraft" class="btn btn-secondary">Minecraft</a>
+            <a href="/cs" class="btn btn-secondary">Counter Strike</a>
+            <a href="/cat" class="btn btn-secondary">Random Cat Image</a>
+        </div>
+    </div>
+
+</body>
+</html>

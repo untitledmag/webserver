@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Strike | Flask Webserver</title>
+    <style>
+        /* CS2 Inspired Palette */
+        :root {
+            --cs-orange: #de9b35; /* Terrorist/Alert Orange */
+            --cs-blue: #5d79ae;   /* Counter-Terrorist Blue */
+            --cs-dark: #12151a;   /* Deep Navy/Black */
+            --cs-slate: #1c2129;  /* UI Card Background */
+            --cs-accent: #ccba7c; /* Gold/Rank Accent */
+            --text-main: #e1e1e1;
+            --text-dim: #8b929a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--cs-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Hero / Video-like Header */
+        header {
+            height: 70vh;
+            background: linear-gradient(to bottom, rgba(18, 21, 26, 0.4), var(--cs-dark)),
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1500'); /* High-tech/Gaming bg */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-text {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            font-style: italic;
+            margin-bottom: 0;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(222, 155, 53, 0.3));
+        }
+
+        .status-bar {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 30px;
+            border-left: 4px solid var(--cs-orange);
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--cs-orange);
+            text-transform: uppercase;
+        }
+
+        /* Tactical Container */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 100px auto;
+            padding: 0 20px;
+        }
+
+        /* Features / Map Grid */
+        .tactical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--cs-slate);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--cs-blue);
+        }
+
+        .card:hover {
+            background: #252b35;
+            transform: scale(1.02);
+            border-color: var(--cs-blue);
+        }
+
+        .card.terrorist::before { background: var(--cs-orange); }
+
+        .card h3 {
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* Skewed Tactical Buttons */
+        .btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: var(--cs-orange);
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            transform: skewX(-15deg); /* Tactical Skew */
+            transition: 0.2s;
+        }
+
+        .btn span {
+            display: block;
+            transform: skewX(15deg); /* Counter-skew text so it's readable */
+        }
+
+        .btn:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(222, 155, 53, 0.4);
+        }
+
+        .buton {
+            margin-top: 30px;
+            padding: 10px 35px;
+            background: var(--cs-orange);
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            transform: skewX(-15deg); /* Tactical Skew */
+            transition: 0.2s;
+        }
+
+        .buton span {
+            display: block;
+            transform: skewX(15deg); /* Counter-skew text so it's readable */
+        }
+
+        .buton:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(222, 155, 53, 0.4);
+        }
+
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            background: #090b0e;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item h4 { color: var(--cs-accent); font-size: 2rem; }
+        .stat-item p { color: var(--text-dim); text-transform: uppercase; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .logo-text { font-size: 3rem; }
+            .stats-row { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="status-bar">Search and Destroy // Active Session</div>
+        <h1 class="logo-text">Counter-Strike</h1>
+        <p style="letter-spacing: 5px; color: #888;">GLOBAL OPERATIONS VERSION 2.0</p>
+        <a href="#" class="btn"><span>DEPLOY TO MATCH</span></a>
+        <a href="/" class="buton">Go Back</a>
+    </header>
+
+    <div class="container">
+        <div class="tactical-grid">
+            <div class="card">
+                <h3>Counter-Terrorists</h3>
+                <p>Equip the M4A1-S or the FAMAS. Your mission is to defuse the C4 or rescue hostages. Strategic utility and teamwork are paramount.</p>
+                <div style="margin-top: 20px; color: var(--cs-blue); font-weight: bold;">[ DEFEND ]</div>
+            </div>
+
+            <div class="card terrorist">
+                <h3>Terrorists</h3>
+                <p>Master the AK-47 and the Glock-18. Coordinate your execute on the bomb site. Precision and aggressive map control will secure the round.</p>
+                <div style="margin-top: 20px; color: var(--cs-orange); font-weight: bold;">[ ATTACK ]</div>
+            </div>
+
+            <div class="card">
+                <h3>Active Duty Maps</h3>
+                <p>From the dusty streets of Dust II to the industrial corridors of Nuke. Learn your callouts, smokes, and flashes to dominate the field.</p>
+                <div style="margin-top: 20px; color: var(--cs-accent); font-weight: bold;">[ INTEL ]</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="stats-row">
+            <div class="stat-item">
+                <h4>128</h4>
+                <p>Tick Rate</p>
+            </div>
+            <div class="stat-item">
+                <h4>45:12</h4>
+                <p>Time Remaining</p>
+            </div>
+            <div class="stat-item">
+                <h4>ACTIVE</h4>
+                <p>Prime Status</p>
+            </div>
+        </div>
+        <p style="color: #444; font-size: 0.8rem;">&copy; 2026 TACTICAL HUB. Images for demonstration purposes only.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft | Flask Webserver</title>
+    <style>
+        /* Minecraft-inspired Palette */
+        :root {
+            --mc-green: #5aa33a;
+            --mc-dirt: #866043;
+            --mc-stone: #7a7a7a;
+            --mc-dark: #313131;
+            --mc-sky: #72aee6;
+            --text-light: #f1f1f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--mc-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=1000') no-repeat center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 8px solid var(--mc-green);
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px #000;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            background: var(--mc-dirt);
+            padding: 5px 20px;
+            border: 3px solid #000;
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            border-left: 10px solid var(--mc-green);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        /* Features Grid */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background: #444;
+            border: 4px solid #000;
+            flex: 1 1 calc(33.333% - 20px);
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--mc-green);
+        }
+
+        .card h3 {
+            color: var(--mc-green);
+            margin-bottom: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--mc-green);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 4px solid #000;
+            box-shadow: inset -4px -4px 0px #3d6e27;
+            margin-top: 20px;
+        }
+
+        .btn:active {
+            box-shadow: inset 4px 4px 0px #3d6e27;
+            transform: translateY(2px);
+        }
+
+        .buton {
+            display: inline-block;
+            background: var(--mc-dark);
+            color: white;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 4px solid #000;
+            box-shadow: inset -4px -4px 0px #3d6e27;
+            margin-top: 20px;
+        }
+
+        .buton:active {
+            box-shadow: inset 4px 4px 0px #3d6e27;
+            transform: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #222;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--mc-dirt);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 100%;
+            }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MINECRAFT</h1>
+        <p class="subtitle">Build. Explore. Survive.</p>
+        <a href="#" class="btn">START ADVENTURE</a>
+        <a href="/" class="buton">Go Back</a>
+    </header>
+
+    <div class="container">
+        
+        <section id="about">
+            <h2>The World is Yours</h2>
+            <p>Minecraft is a game made of blocks that you can transform into whatever you can imagine. Play in Creative Mode with unlimited resources, or hunt for tools to fend off danger in Survival Mode.</p>
+        </section>
+
+        <section id="features">
+            <h2>Game Modes</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Survival</h3>
+                    <p>Collect resources, craft items, gain levels, and manage your hunger. Watch out for Creepers!</p>
+                </div>
+                <div class="card">
+                    <h3>Creative</h3>
+                    <p>Unlimited blocks and items. Fly around the world and build the massive castle of your dreams.</p>
+                </div>
+                <div class="card">
+                    <h3>Hardcore</h3>
+                    <p>Survival mode, but locked to the hardest difficulty and you only have one life. Good luck.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="crafting">
+            <h2>Crafting the Future</h2>
+            <p>From Redstone engineering to enchanting your diamond sword, the depth of the game is limited only by your creativity. Join millions of players in an infinite world of possibilities.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fan Page Concept. All rights reserved.</p>
+        <p style="color: #666; margin-top: 10px;">Not an official Minecraft product. Not approved by or associated with Mojang.</p>
+    </footer>
+
+</body>
+</html>

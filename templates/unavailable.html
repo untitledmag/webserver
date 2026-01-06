@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work in Progress</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+            height: 20px;
+            width: 100%;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-color);
+            height: 100%;
+            width: 75%; /* Adjust this to show progress */
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Newsletter Signup */
+        .signup-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        input[type="email"] {
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Under Construction</h1>
+        <p>We're working hard to bring you something amazing. Our site is currently under development, but we'll be live soon!</p>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        <p><strong>Current Progress: 75%</strong></p>
+
+        <div class="signup-form">
+            <input type="email" placeholder="Enter your email for updates">
+            <button>Notify Me</button>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Your Company Name. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>
