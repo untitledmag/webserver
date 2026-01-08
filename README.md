@@ -43,5 +43,33 @@
   - **Synchronus**
     ```py
     @app.route('/api/v1/<endpoint>')
-    def something():                                        #Used `def` instead of `async def`
-      return jsonify({'code':200,'body':'Success'})
+    def something():                                        # Used `def` instead of `async def`
+      return jsonify({'code':200,'body':'Success'})         # Use synchronus code
+  **Make sure not to use any asynchronus decorator in synchronus function**
+## Quick Setup
+1. Clone this repository.
+   ```bash
+   git clone https://github.com/untitledmag/webserver.git
+2. Open the folder in powershell and create a virtual environment
+   ```bash
+   cd webserver
+   py -m venv server-env
+3. Activate virtual environment in terminal
+   ```bash
+   server-env/Scripts/activate.ps1
+   You should see something like `(server-env) [your_folder_path]>`
+4. Install dependencies
+   ```bash
+   pip install -r requirements.txt
+
+   #if that didn't worked, try this
+   py -m pip install -r requirements.txt
+5. Start server
+   ```bash
+   python app.py
+6. Go to `127.0.0.1:8080` and should be able to see landing page
+
+## Credits
+> Author:- [Manreet Singh](https://github.com/untitledmag/)
+> 
+> Author Email:- [shadowedmagnum@gmail.com](mailto:shadowedmagnum@gmail.com)
