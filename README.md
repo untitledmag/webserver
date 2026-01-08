@@ -3,7 +3,6 @@
 - flask[async]
 - colorama
 - requests
-- aiosqlite
 - httpx
 
 ## Features
