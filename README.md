@@ -1,4 +1,4 @@
-# Minimalistic Webserver Implimentation Using Flask
+# Minimalistic Webserver Using Flask
 ## Dependencies Used
 - flask[async]
 - colorama
