@@ -3,8 +3,8 @@ import base64
 
 url = "http://127.0.0.1:8080/api/v1/get-cat"
 
-credentials = "GViuroCFjGJnrn0p6AproeuCDGgMDZMSQMV1SRM1yIQhG7JrnT"
-# Add .decode('utf-8') at the end here
+credentials = "blabla"
+
 encoded = base64.b64encode(credentials.encode()).decode('utf-8')
 
 headers = {
