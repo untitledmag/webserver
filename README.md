@@ -57,7 +57,6 @@ This needs some fixes and improvement
 3. Activate virtual environment in terminal
    ```bash
    server-env/Scripts/activate.ps1
-   You should see something like `(server-env) [your_folder_path]>`
 4. Install dependencies
    ```bash
    pip install -r requirements.txt
