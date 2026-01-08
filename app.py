@@ -1,6 +1,6 @@
 from config import port, host, debug
-from flask import Flask, render_template, jsonify
-from utils import auth_protected, get_random_cat_image, get_random_string
+from flask import Flask, render_template, jsonify, request
+from utils import auth_protected, get_random_cat_image, get_random_string, get_ip_info as getip
 
 
 app = Flask(__name__)
@@ -33,6 +33,12 @@ def get_developer():
     }
     return jsonify(data)
 
+@app.route('/api/v1/handshake')
+@auth_protected
+async def handshake():
+    return jsonify({'code':200,'body':'Success'})
+
+
 @app.route('/api/v1/get-cat')
 @auth_protected
 async def get_cat_url():
@@ -43,6 +49,16 @@ async def get_cat_url():
 async def register():
     token = get_random_string()
     return jsonify({'authorization': token})
+
+@app.route('/api/v1/ip/lookup', methods=['POST'])
+@auth_protected
+async def get_ip_info():
+    data = request.get_json() 
+    if not data or 'ip' not in data:
+        return jsonify({"error": "Missing IP in request body", "code":400})
+    ip = data['ip']
+    ipdata = await getip(ip)
+    return jsonify(ipdata)
 
 @app.errorhandler(404)
 def page_not_found(e):
